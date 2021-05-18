@@ -1,0 +1,175 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "QIoT Red Hat Hackfest",
+    "version": "1.0.0",
+    "title": "qiot-sensor-service",
+    "contact": {
+      "email": "info@cronos.be"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Sensor Request",
+      "description": "Returns collected data from RPI Enviro+ module"
+    }
+  ],
+  "paths": {
+    "/api/system/id": {
+      "get": {
+        "tags": [
+          "Sensor Request"
+        ],
+        "summary": "return system id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/systemId"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sensors/gas": {
+      "get": {
+        "tags": [
+          "Sensor Request"
+        ],
+        "summary": "return gas response",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/gasResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sensors/pollution": {
+      "get": {
+        "tags": [
+          "Sensor Request"
+        ],
+        "summary": "returns pollution response",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/pollutionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "systemId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "pollutionResponse": {
+        "type": "object",
+        "properties": {
+          "gt0_3um": {
+            "type": "number",
+            "format": "number"
+          },
+          "gt0_5um": {
+            "type": "number",
+            "format": "number"
+          },
+          "gt10um": {
+            "type": "number",
+            "format": "number"
+          },
+          "gt1_0um": {
+            "type": "number",
+            "format": "number"
+          },
+          "gt2_5um": {
+            "type": "number",
+            "format": "number"
+          },
+          "gt5_0um": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm10": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm10_atm": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm1_0": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm1_0_atm": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm2_5": {
+            "type": "number",
+            "format": "number"
+          },
+          "pm2_5_atm": {
+            "type": "number",
+            "format": "number"
+          }
+        }
+      },
+      "gasResponse": {
+        "type": "object",
+        "properties": {
+          "adc": {
+            "type": "number",
+            "format": "number"
+          },
+          "nh3": {
+            "type": "number",
+            "format": "number"
+          },
+          "oxidising": {
+            "type": "number",
+            "format": "number"
+          },
+          "reducing": {
+            "type": "number",
+            "format": "number"
+          }
+        }
+      }
+    }
+  }
+}
